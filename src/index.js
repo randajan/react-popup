@@ -1,6 +1,21 @@
-import React from 'react'
-import styles from './styles.module.css'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+import jet from "@randajan/react-jetpack";
+
+import css from "./css";
+
+import Modal from "./Mods/Modal";
+import Pop from "./Mods/Pop";
+
+import Provider from "./Components/Provider/Provider";
+import PopUp from "./Components/PopUp/PopUp";
+
+export default Provider;
+export {
+  jet,
+  css,
+  PopUp,
+  Modal,
+  Pop
 }
+
+
