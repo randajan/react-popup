@@ -5,8 +5,6 @@ import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import postcssPresetEnv from 'postcss-preset-env';
 
-// Pokračujte v kódu s těmito importy
-
 slib(
     process.env.NODE_ENV !== "dev",
     {
