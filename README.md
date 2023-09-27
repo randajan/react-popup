@@ -25,7 +25,7 @@ First wrap your app into provider
 
 ```jsx
 
-import ModalProvider { Modal, PopUp } from '@randajan/react-popup'
+import ModalProvider { PopUp } from '@randajan/react-popup'
 
 class App extends Component {
   render () {
@@ -53,7 +53,7 @@ as hook with static content
 ```jsx
 
 function PopUp() {
-    const Pop = Modal.usePop(<div>Content of PopUp window</div>);
+    const Pop = ModalProvider.usePop(<div>Content of PopUp window</div>);
 
     useEffect(_ => Pop.up());
 
@@ -67,7 +67,7 @@ or as hook with dynamic content
 ```jsx
 
 function PopUp() {
-    const Pop = Modal.usePop();
+    const Pop = ModalProvider.usePop();
 
     useEffect(_ => Pop.up(<div>Content of PopUp window</div>));
 
@@ -81,13 +81,13 @@ or as hook with custom control
 ```jsx
 
 function PopUpCustomButton() {
-    const Pop = Modal.usePop({lock:true, onDown: (Pop, custom) => alert(custom)});
+    const pop = ModalProvider.usePop({lock:true, onDown: (pop, custom) => alert(custom)});
 
-    useEffect(_ =>{ Pop.up(
+    useEffect(_ =>{ pop.up(
         <div>
             <p>Content of PopUp window</p>
-            <button onClick={_ => Pop.down(true)}>Yes</button>
-            <button onClick={_ => Pop.down(false)}>No</button>
+            <button onClick={_ => pop.down(true)}>Yes</button>
+            <button onClick={_ => pop.down(false)}>No</button>
         </div>
     )});
 
@@ -108,10 +108,9 @@ name | type | arguments | return | use
 --- | --- | --- | --- | ---
 Provider _(default)_ | React Element | props | div container | Provider
 PopUp | React Element | props | null | PopUp window occurs immidiately after render this element 
-Modal | class | Provider, props | instance | Provider auto create scene
-Pop | class | Pop, key | instance | Modal.addPop will create Pop
-Modal.usePop | React Hook | props _or_ ReactElement | Pop | Return Pop instance !not React Component!
-css | static | - | - | css.define({...}) can be used to change className of used components globally
+usePop | React Hook | props _or_ ReactElement | Pop | Return Pop instance !not React Component!
+useModal | React Hook | - | Modal | Return Modal instance !not React Component!
+cssTranslate | static | translator | - | cssTranslate(defaultClassName=>customClassName) can be used to change all default classNames
 
 
 ### Provider props
@@ -122,7 +121,7 @@ onUp | Function | Called after any Pop was opened
 onDown | Function | Called after any Pop was closed
 list | Boolean | Order of Pops will be ignored
 transition | Number _or_ Object | Will be passed to CSSTransition.props.timeout
-x | any | the default close button of every
+closeButton | any | the default close button of every Pop
 id | String | will be passed to div
 title | String | will be passed to div
 className | String | will be passed to div
@@ -136,13 +135,13 @@ prop | type | use
 children* | ReactElement | Content of PopUp window
 lock | Boolean | On __TRUE__ the PopUp window can't be closed manually
 transition | Number _or_ Object | Will be passed to CSSTransition.props.timeout
-x | any | close button for the Pop
+closeButton | any | close button for the Pop
 onChange | Function | Will be called after every change
 onUp | Function | Called after the frame was opened
 onDown | Function | Called after the frame was closed
 flags | Object | _same as at provider_
 
-_* if the children is the only argument of __usePopUp__ or __popUp__ it could be passed without wraping in object_
+_* if the children is the only argument of __usePop__ or __popUp__ it could be passed without wraping in object_
 
 ### The Pop instance
 name | type | arguments | return | use
@@ -156,7 +155,7 @@ Pop.unlock | Function | null | Will unlock the Pop window
 There are some custom attributes that will be appended to the div container. It's mirroring the state of PopUp provider
 parent | name | purpose
 --- | --- | ---
-Modal | load | Waiting before first render
+Modal | mounting | Waiting before first render
 Modal | up | When there is at least 1 Pop pending
 Modal | modal | When the list is false
 Modal | list | When the list is true
