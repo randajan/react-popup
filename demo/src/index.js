@@ -7,10 +7,7 @@ import Provider, { PopUp, usePop, cssTranslate } from "../../dist/index.js";
 import css from "../../dist/index.css";
 import { Pops } from "./Pops.js";
 
-cssTranslate(c=>{
-    console.log(c);
-    return "x-"+c;
-});
+cssTranslate(c=>c);
 
 const root = document.getElementById("root");
 
