@@ -1,6 +1,6 @@
 {
   "name": "@randajan/react-popup",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Simple modal windows for react",
   "repository": "randajan/react-popup",
   "type": "module",
