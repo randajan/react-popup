@@ -25,7 +25,8 @@ First wrap your app into provider
 
 ```jsx
 
-import ModalProvider { PopUp } from '@randajan/react-popup'
+import ModalProvider, { PopUp } from '@randajan/react-popup'; 
+import '@randajan/react-popup/css'; //default css
 
 class App extends Component {
   render () {
