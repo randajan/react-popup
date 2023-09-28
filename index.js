@@ -9,7 +9,6 @@ slib(
     process.env.NODE_ENV !== "dev",
     {
         minify: false,
-
         loader: {
             ".js": "jsx",
         },
